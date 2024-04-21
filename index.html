@@ -1,0 +1,75 @@
+<html>
+<head>
+    <style>
+        /* Estilos para el dado */
+        .dice {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border: 2px solid black;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            font-weight: bold;
+            color: black;
+            background-color: white;
+        }
+
+        /* Estilos para el botón */
+        .button {
+            width: 150px;
+            height: 50px;
+            margin: 20px auto;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: blue;
+            cursor: pointer;
+        }
+
+        /* Estilos para la animación */
+        @keyframes roll {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(90deg); }
+            50% { transform: rotate(180deg); }
+            75% { transform: rotate(270deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .dice.animate {
+            animation: roll 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Elemento para el dado -->
+    <div class="dice">1</div>
+    <!-- Elemento para el botón -->
+    <button class="button" onclick="rollDice()">Lanzar el dado</button>
+    <!-- Script para la lógica -->
+    <script>
+        // Función para generar un número aleatorio entre 1 y 6
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        // Función para lanzar el dado
+        function rollDice() {
+            // Obtener el elemento del dado
+            var dice = document.querySelector(".dice");
+            // Añadir la clase animate para iniciar la animación
+            dice.classList.add("animate");
+            // Cambiar el contenido del dado por un número aleatorio después de la animación
+            setTimeout(function() {
+                dice.textContent = getRandomNumber();
+                // Quitar la clase animate para terminar la animación
+                dice.classList.remove("animate");
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
